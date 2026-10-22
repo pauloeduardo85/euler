@@ -28,5 +28,5 @@ while r > 0.1:
 	v = gerar(i)
 	p = list(filter(lambda x: isPrime(x), v))
 	r = len(p)/len(v)
-print(r,n)
+print(r,i)
 
