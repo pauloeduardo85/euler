@@ -1049,12 +1049,12 @@ def calculaValorDaMao(mao):
 	#são consecutivos
 	w = mao.split(" ")
 	w_numeros = sorted(list([converteValorCarta(x[0]) for x in w]))
-	w_suits = sorted(list([converteValorCarta(x[0]) for x in w]))
+	w_suits = sorted(list([x[1] for x in w]))
 	straight = True
 	for i in range(0,len(w_numeros)-1):
 		if w_numeros[i+1] - w_numeros[i] != 1:
 			straight = False
-	if straight and mao[-2] == 'A':
+	if straight and 14 in w_numeros:
 		return Status.ROYALSTRAIGHTFLUSH
 	if straight and len(set(w_suits)) == 1:
 		return Status.STRAIGHTFLUSH
@@ -1081,11 +1081,11 @@ def calculaValorDaMao(mao):
 		return Status.ONEPAIR
 	return Status.HIGHCARD
 def desempateMao(h1,h2, valor):
+	print(valor)
 	w1 = h1.split(" ")
 	w1_numeros = sorted(list([converteValorCarta(x[0]) for x in w1]))
 	w2 = h2.split(" ")
 	w2_numeros = sorted(list([converteValorCarta(x[0]) for x in w2]))
-	#aux.append(valor)
 	# High Card e OnePair somente
 	if valor == Status.HIGHCARD:
 		return max(w1_numeros) > max(w2_numeros)
@@ -1112,7 +1112,6 @@ def desempateMao(h1,h2, valor):
 				key2 = e
 		if key1 > key2:
 			return True
-		return max(w1_numeros) > max(w2_numeros)
 	return False
 vitorias = 0
 for jogo in v:
@@ -1123,9 +1122,11 @@ for jogo in v:
 	if valor1.value > valor2.value:
 		vitorias+=1
 	if valor1==valor2:
+		print(valor1)
 		if desempateMao(h1,h2,valor1):
 			vitorias+=1
 print(vitorias)
 	#print(calculaValorDaMao(h1), calculaValorDaMao(h2))
 	#sys.exit()
 #print(set(aux))
+#print(calculaValorDaMao("KC 8C JD JC KA"))

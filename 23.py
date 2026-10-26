@@ -8,23 +8,19 @@ def gerarDivisoresMenoresQueNumero(numero):
 	ret = ret+v[::-1]
 	del ret[-1]	
 	return ret
-def gerarLista():
-	ret=[]
-	for i in range(12,28124):
-		divisores = gerarDivisoresMenoresQueNumero(i)
-		if sum(divisores) > i:
-			ret.append(i)
-	return ret
-#print(gerarDivisoresMenoresQueNumero(28))
-#print(gerarLista())
-lista = gerarLista()
-#combinatios = itertools.combinations_with_replacement(lista, 2)
-#combinatios = list(combinatios)
-#print(combinatios)
-combinatios = []
-for i in lista:
-	for j in lista:
-		combinatios.append(i+j)
-final = list(filter(lambda x: x not in combinatios, range(12,28124)))
-print(final)
+def isAbudante(numero):
+	return sum(gerarDivisoresMenoresQueNumero(numero)) > numero
+#print(gerarDivisoresMenoresQueNumero(28), isAbudante(28))
+#print(gerarDivisoresMenoresQueNumero(12), isAbudante(12))
 
+limite = 28123
+abundantes = []
+for i in range(12,limite+1):
+	if isAbudante(i):
+		abundantes.append(i)
+cannot = []
+for i in range(0,len(abundantes)):
+	for j in range(0,len(abundantes)):
+		if abundantes[i] + abundantes[j] <= limite and (not isAbudante(abundantes[i] + abundantes[j])):
+			cannot.append(abundantes[i] + abundantes[j])
+print(cannot,sum(cannot))
