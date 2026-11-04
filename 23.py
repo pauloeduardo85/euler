@@ -1,4 +1,5 @@
 import itertools
+import sys
 def gerarDivisoresMenoresQueNumero(numero):
 	ret = []
 	for i in range(1,int(numero**0.5)+1):
@@ -7,20 +8,18 @@ def gerarDivisoresMenoresQueNumero(numero):
 	v = [int(numero / x) for x in ret]
 	ret = ret+v[::-1]
 	del ret[-1]	
-	return ret
+	return set(ret)
 def isAbudante(numero):
 	return sum(gerarDivisoresMenoresQueNumero(numero)) > numero
-#print(gerarDivisoresMenoresQueNumero(28), isAbudante(28))
-#print(gerarDivisoresMenoresQueNumero(12), isAbudante(12))
-
 limite = 28123
-abundantes = []
-for i in range(12,limite+1):
-	if isAbudante(i):
-		abundantes.append(i)
-cannot = []
-for i in range(0,len(abundantes)):
-	for j in range(0,len(abundantes)):
-		if abundantes[i] + abundantes[j] <= limite and (not isAbudante(abundantes[i] + abundantes[j])):
-			cannot.append(abundantes[i] + abundantes[j])
-print(cannot,sum(cannot))
+#print(gerarDivisoresMenoresQueNumero(4))
+#sys.exit()
+abundantes = list(filter(lambda x: isAbudante(x), range(1,limite+1)))
+v = []
+for i in abundantes:
+	for j in abundantes:
+		if i+j <= limite:
+			v.append(i+j)
+v = set(v)
+soma = sum(range(1,limite+1))
+print(soma - sum(v))
