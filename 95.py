@@ -1,5 +1,4 @@
 import sys
-longest = []
 def isPrime(numero):
 	if numero % 2 == 0:
 		return numero == 2
@@ -17,18 +16,6 @@ def gerarDivisores(numero):
 def gerarDivisoresMenosNumero(numero):
 	ret = gerarDivisores(numero)
 	return ret[0:len(ret)-1]
-def somaDivisoresProprios(numero):
-	return sum(gerarDivisoresMenosNumero(numero))
-def gerarAmicableChain(numero):
-	if(isPrime(numero)):
-		return []
-	v = [numero]
-	i = somaDivisoresProprios(numero)
-	while i != numero:
-		v.append(i)
-		i = somaDivisoresProprios(i)
-	return v
-print(gerarAmicableChain(220))
-print(gerarAmicableChain(12496))
-print(gerarAmicableChain(5))
-print(gerarAmicableChain(15472))
+cache=[0]*1000000
+print(sys.getsizeof(cache)/1000,"kB")
+
