@@ -15,7 +15,7 @@ final = sum_integer_fraction(1,fracao_de_baixo[1],fracao_de_baixo[0])
 #print(final,fracao_de_baixo)
 contagem = 2
 res=0
-while contagem < 11:
+while contagem < 1001:
 	contagem+=1
 	fracao_de_baixo=sum_integer_fraction(2,fracao_de_baixo[1],fracao_de_baixo[0])
 	final = final = sum_integer_fraction(1,fracao_de_baixo[1],fracao_de_baixo[0])
