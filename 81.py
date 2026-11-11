@@ -9,30 +9,32 @@ with open('81_matrix.txt', 'r') as file:
         numeros = [int(x) for x in cleaned_line]      
         mtx.append(numeros)
 #print(mtx)
+#sys.exit()
 #carregar cache
 cache = copy.deepcopy(mtx)
 for i in range(0,len(cache)):
 	for j in range(0,len(cache[i])):
 		cache[i][j] = -1
 #print(cache)
-def MaiorDeDois(x,y):
-	if x > y:
+#sys.exit()
+def MenorDeDois(x,y):
+	if x < y:
 		return x
 	return y
-def Maximo(i,j):
+def Minimo(i,j):
+	print(i,j)
 	if cache[i][j] != -1:
 		return cache[i][j]
-	if i == len(mtx) - 1 and j == len(mtx) - 1:
-		cache[i][j] = mtx[i][j]
+	if i==len(mtx)-1 and j==len(mtx)-1:
+		cache[i][j]=mtx[i][j]
 		return cache[i][j]
-	if i == len(mtx) - 1:
-		cache[i][j] = mtx[i][j] + Maximo(i,j+1)
+	if i==len(mtx)-1 and j<len(mtx)-1:
+		cache[i][j]=mtx[i][j]+Minimo(i,j+1)
 		return cache[i][j]
-	if j == len(mtx) - 1:
-		cache[i][j]=mtx[i][j] + Maximo(i+1,j)
+	if i<len(mtx)-1 and j==len(mtx)-1:
+		cache[i][j]=mtx[i][j]+Minimo(i+1,j)
 		return cache[i][j]
-	maior = MaiorDeDois(Maximo(i+1,j), Maximo(i,j+1))
-	cache[i][j] = maior + mtx[i][j]
+	maior=MenorDeDois(Minimo(i+1,j),Minimo(i,j+1))
+	cache[i][j]=mtx[i][j]+maior
 	return cache[i][j]
-print(Maximo(0,0))
-#print(cache)
+print(Minimo(0,0))

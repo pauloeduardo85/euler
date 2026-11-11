@@ -24,6 +24,7 @@ aux2 = gerarListaPrimosDivisores(3)
 aux3 = gerarListaPrimosDivisores(4)
 cota = 4
 for i in range(2,10**6):
+	print(i)
 	d1 = aux
 	d2 = aux2
 	d3 = aux3
@@ -33,22 +34,5 @@ for i in range(2,10**6):
 	aux3 = d4
 	if len(d1) == cota and len(d2) == cota and len(d3) == cota and len(d4) == cota:
 		print(i,i+1,i+2, i+3)
+		print("achou")
 		sys.exit()
-'''
-import itertools
-import sys
-def TuplaMultiplicadas(tupla):
-	s = 1
-	for i in tupla:
-		s *= int(i)
-	return s
-#gerar lista de primos menor que 10.000
-lista_primos = gerarListaPrimos(10000)
-lista_tuplas = list(itertools.combinations(lista_primos,2))
-lista_tuplas = [TuplaMultiplicadas(x) for x in lista_tuplas]
-lista_tuplas = sorted(lista_tuplas)	
-for i in range(0,len(lista_tuplas)):
-	if lista_tuplas[i+1] - lista_tuplas[i] == 1:
-		print(lista_tuplas[i+1],lista_tuplas[i]) 
-		sys.exit()
-'''
