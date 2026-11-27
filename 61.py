@@ -43,6 +43,8 @@ lista_hex = list(filter(lambda x: isHex(x), range(1000,10000)))
 lista_hepta = list(filter(lambda x: isHepta(x), range(1000,10000)))
 lista_octa = list(filter(lambda x: isOcto(x), range(1000,10000)))
 soma=0
+print(lista_triangle)
+'''
 for t in lista_triangle:
 	for s in filter(lambda x: int(str(t)[-2:]) == int(str(x)[:2]), lista_square):
 		for p in filter(lambda x: int(str(s)[-2:]) == int(str(x)[:2]), lista_penta):
@@ -50,3 +52,4 @@ for t in lista_triangle:
 				for h7 in filter(lambda x: int(str(h)[-2:]) == int(str(x)[:2]), lista_hepta):
 					for o in filter(lambda x: int(str(h7)[-2:]) == int(str(x)[:2]), lista_octa):
 						print(t,s,p,h,h7,o)
+'''
